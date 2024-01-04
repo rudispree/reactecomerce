@@ -2,12 +2,12 @@ import React, { Component, Fragment } from 'react'
 import {Container,Row,Col,Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-class FeaturedProducts extends Component {
+class SuggestedProduct extends Component {
      render() {
           return (
-              <Fragment>
+               <Fragment>
                    <Container className="text-center" fluid={true}>
-          <div className="section-title text-center mb-55"><h2>FEATURED PRODUCT</h2>
+          <div className="section-title text-center mb-55"><h2>YOU MAY ALSO LIKE </h2>
           <p>Some Of Our Exclusive Collection, You May Like</p>
           </div>
 
@@ -20,7 +20,7 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
           </Link>
@@ -34,7 +34,7 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Blue, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
      </Col>
@@ -45,7 +45,7 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
      </Col>
@@ -57,7 +57,7 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
      </Col>
@@ -69,7 +69,7 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
      </Col>
@@ -81,20 +81,20 @@ class FeaturedProducts extends Component {
           <Card.Body> 
           <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
           <p className="product-price-on-card">Price : $120</p>
-               
+
           </Card.Body>
           </Card>
      </Col>
 
- 
+
 </Row>
 
 
                    </Container>
 
               </Fragment>
-          )
+          ) 
      }
 }
 
-export default FeaturedProducts
+export default SuggestedProduct
