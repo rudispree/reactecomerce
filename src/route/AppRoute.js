@@ -12,6 +12,7 @@ import RefundPage from '../pages/RefundPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
 import FavouritePage from '../pages/FavouritePage';
 import NotificationPage from '../pages/NotificationPage';
+import CartPage from '../pages/CartPage';
 
 
 class AppRoute extends Component {
@@ -31,6 +32,7 @@ class AppRoute extends Component {
             <Route exact path="/productdetails" component={ProductDetailsPage} />
             <Route exact path="/favourite" component={FavouritePage} />
             <Route exact path="/notification" component={NotificationPage} />
+            <Route exact path="/cart" component={CartPage} />
           </Switch>
         </Fragment>
       </Router>
