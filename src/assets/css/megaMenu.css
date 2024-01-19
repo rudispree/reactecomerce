@@ -25,7 +25,11 @@
     float: right;
     margin-left: 5px;
 }
-.active:after,hover {
+/* .active:after,hover {
+    color: #ffffff;
+    content: "\276E";
+} */
+.active:after, .accordion:hover {
     color: #ffffff;
     content: "\276E";
 }
