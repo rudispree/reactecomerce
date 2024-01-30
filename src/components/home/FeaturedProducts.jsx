@@ -36,7 +36,11 @@ class FeaturedProducts extends Component {
                          <Card className="image-box card">
                               <img className="center" src={FeaturedList.image} />   
                               <Card.Body> 
-                              <p className="product-name-on-card" style={{ textDecoration: 'none' }}>{FeaturedList.title}</p>
+                              
+                              <p className="product-name-on-card" style={{ textDecoration: 'none' }}>
+                              {FeaturedList.title.length > 40 ? `${FeaturedList.title.substring(0, 40)}...` : FeaturedList.title}
+                              </p>
+
                               <p className="product-price-on-card" style={{ textDecoration: 'none' }}>Price : Rp.{FeaturedList.price}</p>
                                    
                               </Card.Body>
@@ -49,7 +53,9 @@ class FeaturedProducts extends Component {
                          <Card className="image-box card">
                               <img className="center" src={FeaturedList.image} />   
                               <Card.Body> 
-                              <p className="product-name-on-card" style={{ textDecoration: 'none' }}>{FeaturedList.title}</p>
+                              <p className="product-name-on-card" style={{ textDecoration: 'none' }}>
+                              {FeaturedList.title.length > 40 ? `${FeaturedList.title.substring(0, 40)}...` : FeaturedList.title}
+                              </p>
                               <p className="product-price-on-card" style={{ textDecoration: 'none' }}>Price : <strike className="text-secondary">Rp.{FeaturedList.price}</strike> Rp. {FeaturedList.special_price}</p>
                                    
                               </Card.Body>

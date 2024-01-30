@@ -3,6 +3,7 @@ import {Container,Row,Col,Card,Button} from 'react-bootstrap'
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
 import ReactHtmlParser from 'react-html-parser'
+import { Link } from 'react-router-dom';
 
 
 class Categories extends Component {
@@ -30,12 +31,14 @@ class Categories extends Component {
         const MyView = CatList.map((CatList, i) => {
             return (
                 <Col key={i} className="p-0" xl={2} lg={2} md={2} sm={6} xs={6}>
+                    <Link to={"/productcategory/"+CatList.category_name}>
                     <Card className="h-100 w-100 text-center">
                         <Card.Body>
                             <img className="center" src={CatList.category_image} alt={CatList.category_name} />
                             <h5 className="category-name">{CatList.category_name}</h5>
                         </Card.Body>
                     </Card>
+                    </Link>
                 </Col>
             );
         });
