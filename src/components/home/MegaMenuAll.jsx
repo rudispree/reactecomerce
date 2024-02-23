@@ -10,15 +10,16 @@ class MegaMenuAll extends Component {
           this.state ={
                MenuData:[]
           }
-     }
+     } 
 
      componentDidMount(){
-          axios.get(AppURL.AllCategoryDetails).then(response =>{ 
-                this.setState({MenuData:response.data});
-
-          }).catch(error=>{
-
-          });
+          axios.get(AppURL.AllCategoryDetail).then(response => { 
+              // console.log("Data dari server:", response.data);
+               this.setState({ MenuData: response.data });
+           }).catch(error => {
+               console.error("Error fetching data:", error);
+           });
+           
      }
 
      MenuItemClick=(event)=>{
@@ -39,43 +40,50 @@ class MegaMenuAll extends Component {
 
 
           const CatList = this.state.MenuData;
-
-          const MyView = CatList.map((CatList,i)=>{
-               return <div key={i.toString()}>
-      <button onClick={this.MenuItemClick} className="accordionAll">
-      <img className="accordionMenuIconAll" src={CatList.category_image} />&nbsp; {CatList.category_name}
-                        </button>
-          <div className="panelAll">
-      <ul>
-          {
-               (CatList.subcategory_name).map((SubList,i)=>{
-                    return <li><Link to={"productsubcategory/"+CatList.category_name+"/"+SubList.subcategory_name } className="accordionItem" >{SubList.subcategory_name} </Link></li>
-
-               })    
+       
+          if (CatList.length === 0) {
+            return <div>Loading...</div>;
           }
-          
-      </ul>
-         </div> 
+       
+
+          const MyView = CatList.map((CatList, i) => {
+               
+               return (
+                 <div key={i.toString()}>
+                   <button onClick={this.MenuItemClick} className="accordionAll">
+                     <img className="accordionMenuIconAll" src={CatList.category_image} />&nbsp; {CatList.category_name}
+                   </button>
+                   <div className="panelAll" key={`panel_${i}`}>
+                     <ul>
+                       {CatList.subcategory_name.map((SubList, j) => {
+                         return (
+                           <li key={`subcategory_${i}_${j}`}>
+                          
+                             <Link to={"/productsubcategory/"+CatList.category_name+"/"+SubList.subcategory_name } className="accordionItem" >{SubList.subcategory_name} </Link>
+                           </li>
+
+
+                           
+                         );
+                       })}
+                     </ul>
+                   </div>
+                 </div>
+               );
+             });
              
-               </div>
-
-
-
-          });
 
 
 
           return (
-                <div className="accordionMenuDivAll">
-                   <div className="accordionMenuDivInsideAll">
-
-                   {MyView}
-
-                   </div>
-
-              </div>
+               <div className="accordionMenuDivAll">
+                    <div className="accordionMenuDivInsideAll">
+                    {MyView}
+                    </div>
+               </div>
           )
      }
 }
 
 export default MegaMenuAll
+

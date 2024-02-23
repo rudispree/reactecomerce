@@ -30,7 +30,7 @@ export class HomePage extends Component {
           return (   
                <Fragment> 
                     <div className="Desktop">
-                        <NavMenuDesktop />
+                        <NavMenuDesktop /> 
                         <HomeTop />
                     </div>
 

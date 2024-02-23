@@ -17,17 +17,6 @@ class ProductDetails extends Component {
         this.previewImgRef.current.setAttribute('src', imgSrc);
     }
 
-    PriceOption(price,special_price){
-        if(special_price=="na"){
-            return(
-                <p className="product-price-on-card">Price: Rp. {price}</p>
-            )
-        }else{
-            return(
-                <p className="product-price-on-card">Price: <strike className="text-secondary">Rp.{price}</strike> Rp. {special_price}</p> 
-            )
-        }
-    }
 
     render() {
         const ProductAllData = this.props.data || {};
@@ -58,54 +47,20 @@ class ProductDetails extends Component {
             color = '', 
         } = productDetails;
 
-        // // Split ukuran menjadi array jika ada beberapa ukuran yang dipisahkan dengan koma
-        // const sizesArray = size.split(',').map(item => item.trim());
+        // Split ukuran menjadi array jika ada beberapa ukuran yang dipisahkan dengan koma
+        const sizesArray = size.split(',').map(item => item.trim());
 
-        // // Split warna menjadi array jika ada beberapa warna yang dipisahkan dengan koma
-        // const colorsArray = color.split(',').map(item => item.trim());
-
-        var ColorDiv = "d-none"
-        if(color!="na"){
-            let ColorArray = color.split(',');
-            var ColorOption = ColorArray.map((ColorList,i) =>{
-                return <option value={ColorList} >{ColorList}</option>
-            })
-            ColorDiv=""
-        }else{
-            ColorDiv="d-none"
-        }
-
-        var SizeDiv = "d-none"
-        if(size!="na"){
-            let SizeArray = size.split(',');
-            var SizeOption = SizeArray.map((SizeList,i) =>{
-                return <option value={SizeList} >{SizeList}</option>
-            })
-            SizeDiv=""
-        }else{
-            SizeDiv="d-none"
-        }
+        // Split warna menjadi array jika ada beberapa warna yang dipisahkan dengan koma
+        const colorsArray = color.split(',').map(item => item.trim());
 
         return (
             <Fragment>
                 <Container fluid className="BetweenTwoSection">
 
-                <div className="breadbody">
-                        <Breadcrumb>
-                            <Breadcrumb.Item ><Link to="/">Home</Link></Breadcrumb.Item>
-                            <Breadcrumb.Item >
-                            <Link to={"/productcategory/"+category}>{category }</Link>
-                            
-                            </Breadcrumb.Item>
-                            <Breadcrumb.Item >
-                            <Link to={"/productsubcategory/"+category+"/"+subcategory}>{subcategory }</Link>
-                            </Breadcrumb.Item>
-                            <Breadcrumb.Item >
-                            <Link to={"/productdetails/"+product_code}>{title}</Link>
-                            </Breadcrumb.Item>
-                        </Breadcrumb>
-                    </div>
-                    {/*  */}
+                  
+                 
+
+                   
                     <Row className="p-2">
                         <Col className="shadow-sm bg-white pb-3 mt-4" md={12}>
                             <Row>
@@ -126,43 +81,16 @@ class ProductDetails extends Component {
                                 <Col className="p-3" md={6}>
                                     <h5 className="Product-Name">{title}</h5>
                                     <h6 className="section-sub-title">{short_description}</h6>
-                                    {this.PriceOption(price,special_price)}
-                                    {/* <div className="input-group">
+                                    <div className="input-group">
                                         <div className="Product-price-card d-inline">Reguler Price Rp. {price}</div>
                                         <div className="Product-price-card d-inline">50% Discount</div>
                                         <div className="Product-price-card d-inline">New Price Rp. {special_price}</div>
-                                    </div> */}
+                                    </div>
                                     <h6 className="mt-2">Category: <b>{category}</b></h6>
                                     <h6 className="mt-2">SubCategory: <b>{subcategory}</b></h6>
                                     <h6 className="mt-2">Category: <b>{category}</b></h6>
                                     <hr></hr>
-                                    <div className={ColorDiv}>
-                                        <h6 className="mt-2">Choose Color</h6>
-                                        <select className="form-control form-select">
-                                            <option>Choose Color</option>
-                                            {ColorOption}
-                                        </select>
-                                    </div>
-                                    <div className={SizeDiv}>
-                                        <h6 className="mt-2">Choose Size</h6>
-                                        <select className="form-control form-select">
-                                            <option>Choose Size</option>
-                                            {SizeOption}
-                                        </select>
-                                    </div>
-                                    <div className="">
-                                        <h6 className="mt-2">Choose Quantity</h6>
-                                        <select className="form-control form-select">
-                                             <option>Choose Quantity</option>
-                                             <option value="01">01</option>
-                                             <option value="02">02</option>
-                                             <option value="03">03</option>
-                                             <option value="04">04</option>
-                                        </select>
-                                    </div>
-                                   
-                                    
-                                    {/* <h6 className="mt-2">Choose Color</h6>
+                                    <h6 className="mt-2">Choose Color</h6>
                                     <div className="input-group">
                                         {colorsArray.map((color, index) => (
                                             <div key={index} className="form-check mx-1">
@@ -170,26 +98,26 @@ class ProductDetails extends Component {
                                                 <label className="form-check-label" htmlFor={`color${index}`}>{color}</label>
                                             </div>
                                         ))}
-                                    </div> */}
+                                    </div>
 
-                                   
-                                    {/* <div className="input-group">
+                                    <h6 className="mt-2">Choose Size</h6>
+                                    <div className="input-group">
                                         {sizesArray.map((size, index) => (
                                             <div key={index} className="form-check mx-1">
                                                 <input className="form-check-input" type="radio" name="size" id={`size${index}`} value={size} />
                                                 <label className="form-check-label" htmlFor={`size${index}`}>{size}</label>
                                             </div>
                                         ))}
-                                    </div> */}
+                                    </div>
 
-                                    {/* <h6 className="mt-2">Choose Quantity</h6>
-                                    <input className="form-control text-center w-50"value="" type="number" />
+                                    <h6 className="mt-2">Quantity</h6>
+                                    <input className="form-control text-center w-50" type="number" />
 
                                     <div className="input-group mt-3">
                                         <button className="btn site-btn m-1 "><i className="fa fa-shopping-cart"></i> Add To Cart</button>
                                         <button className="btn btn-primary m-1"><i className="fa fa-car"></i> Order Now</button>
                                         <button className="btn btn-primary m-1"><i className="fa fa-heart"></i> Favourite</button>
-                                    </div> */}
+                                    </div>
                                 </Col>
                             </Row>
 

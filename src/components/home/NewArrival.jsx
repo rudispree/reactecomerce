@@ -7,13 +7,16 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import AppURL from '../../api/AppURL';
 import ReactHtmlParser from 'react-html-parser';
+import NewarrivalLoading from '../PlaceHolder/NewarrivalLoading';
 
 
 class NewArrival extends Component {
     constructor(props){
         super(props);
         this.state={
-          ProductData:[]
+          ProductData:[],
+          isLoading: 'd-none',
+          mainDiv: 'd-none',
         }
         this.next=this.next.bind(this);
         this.previous=this.previous.bind(this)
@@ -25,15 +28,42 @@ class NewArrival extends Component {
             this.slider.slickPrev();
     }
 
-    componentDidMount()
-    {
-          axios.get(AppURL.ProductListByRemark("NEW")).then(response =>{
+    // componentDidMount()
+    // {
+    //       axios.get(AppURL.ProductListByRemark("NEW")).then(response =>{
               
-              this.setState({ProductData:response.data});
-          }).catch(error =>{  
+    //           this.setState({ProductData:response.data,isLoading: 'd-none', mainDiv: ''});
+    //       }).catch(error =>{  
               
-          })
+    //       })
+    // }
+
+    componentDidMount() {
+      this.loadDataWithRetry();
     }
+    
+    loadDataWithRetry = (retryCount = 3, delay = 1000) => {
+      this.setState({ isLoading: 'd-block' });
+    
+      axios.get(AppURL.ProductListByRemark('NEW'))
+        .then(response => {
+          this.setState({ ProductData: response.data, isLoading: 'd-none', mainDiv: '' });
+        })
+        .catch(error => {
+          if (error.response && error.response.status === 429 && retryCount > 0) {
+            setTimeout(() => {
+              this.loadDataWithRetry(retryCount - 1, delay * 2);
+            }, delay);
+          } else {
+            // Handle other errors
+            console.error("Failed to fetch data:", error);
+            this.setState({ isLoading: 'd-none', mainDiv: '' });
+          }
+        });
+    };
+    
+
+  
 
 
      render() {
@@ -43,6 +73,7 @@ class NewArrival extends Component {
         if(NewList.special_price=="na")
         {
              return  <div>
+                          <Link className="text-link" to={"/productdetails/"+NewList.id}>
                           <Card className="image-box card">
                             <img className="center" src={NewList.image} />   
                             <Card.Body> 
@@ -56,9 +87,11 @@ class NewArrival extends Component {
 
                             </Card.Body>
                             </Card> 
+                          </Link>
                     </div>
         }else{
              return  <div>
+                      <Link className="text-link" to={"/productdetails/"+NewList.id}>
                         <Card className="image-box card">
                         <img className="center" src={NewList.image} />   
                         <Card.Body> 
@@ -69,7 +102,8 @@ class NewArrival extends Component {
                         <p className="product-price-on-card" style={{ textDecoration: 'none' }}>Price : <strike className="text-secondary">Rp.{NewList.price}</strike> Rp. {NewList.special_price}</p>
 
                         </Card.Body>
-                        </Card>          
+                        </Card>
+                      </Link>          
                     </div>
         }
 
@@ -131,13 +165,15 @@ class NewArrival extends Component {
 
                <Row>
 
-               <Slider ref={c=>(this.slider=c)} {...settings}>
+              <NewarrivalLoading isLoading={this.state.isLoading}/>
+              <div className={this.state.mainDiv}>
+                <Slider ref={c=>(this.slider=c)} {...settings}>
                         
                           {MyView}
                         
                        
                 </Slider>
-
+              </div>
                 
                </Row>
 
