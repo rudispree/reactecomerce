@@ -22,9 +22,17 @@
 }
 
 .smalliamge{
-    height:100px;
+    height:154px;
 }
 
 .product-sm-img:hover{
     cursor: pointer;
 }
+
+
+ .detailimage{    
+    max-width: 90%;
+    height: 499px;
+    margin: 0px;
+    margin-left: 82px;    
+ }

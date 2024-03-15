@@ -11,6 +11,11 @@ class UserLoginPage extends Component {
           window.scroll(0,0)
      }
      render() {
+
+          const setUser = this.props.setUser;
+          const user = this.props.user;
+
+ 
           return (
                <Fragment> 
                <div className="Desktop">
@@ -21,7 +26,7 @@ class UserLoginPage extends Component {
                <NavMenuMobile />  
                </div>                       
 
-               <UserLogin /> 
+                <UserLogin setUser={setUser} user ={user} /> 
 
                <div className="Desktop">
                <FooterDesktop/>

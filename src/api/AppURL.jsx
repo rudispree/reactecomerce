@@ -6,7 +6,7 @@ class AppURL {
     static AllCategoryDetail = this.BaseURL+"/allcategory"
 
     static ProductListByRemark(Remark) {
-        return this.BaseURL+"/productlistbyremark/"+Remark;
+        return this.BaseURL+"/productlistbyremark/"+Remark; 
     }
 
     static ProductListByCategory(category) {
@@ -29,8 +29,23 @@ class AppURL {
         return this.BaseURL+"/search/"+searchkey;
     }
 
+    static Login = this.BaseURL+"/login"
+    static UserRegister = this.BaseURL+"/register"
+    static ForgetPassword = this.BaseURL+"/forgetpassword"
+    static ResetPassword = this.BaseURL+"/resetpassword"
 
-}
+    static UserData = this.BaseURL+"/profile" 
+
+
+    static SimilarProduct(code) {
+        return this.BaseURL+"/similar/"+code;
+    }
+
+    static ReviewList(code) {
+        return this.BaseURL+"/reviewlist/"+code;
+    }
+
+} 
 
 
 export default AppURL
